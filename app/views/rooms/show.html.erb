@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @room %>
+
+<div>
+  <% if current_user.admin? %>
+    <%= link_to "Edit this room", edit_room_path(@room), class: 'btn btn-info'%>
+    <%= button_to "Destroy this room", @room, method: :delete, class: 'btn btn-danger '%>
+  <% end %>
+  <%= link_to "Book this room", new_booking_path(booking: {room_id: @room.id}), class: 'btn btn-primary'%>
+  <br>
+  <%= link_to "<<Back to rooms", rooms_path %>
+</div>

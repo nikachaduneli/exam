@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+<% if current_user.admin? %>
+  <%= link_to "New hotel", new_hotel_path , class: 'btn btn-primary'%>
+<% end %>
+<div id="hotels">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Hotel</th>
+      <th scope="col">address</th>
+      <th scope="col">rooms</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @hotels.each do |hotel| %>
+      <tr>
+        <th scope="row"><%= hotel.id %></th>
+        <td><%= link_to hotel.name, hotel %></td>
+        <td><%= hotel.address %></td>
+        <td><%= pluralize(hotel.rooms.count, "room") %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+

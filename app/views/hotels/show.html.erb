@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @hotel %>
+
+<div>
+  <% if logged_in? && current_user.admin? %>
+    <%= link_to "edit", edit_hotel_path(@hotel), class: 'btn btn-primary'%>
+    <%= link_to "delete", @hotel , class: 'btn btn-danger', data: {turbo_method: :delete, turbo_confirm: 'are you sure?'}%>
+  <% end %>
+  <br>
+  <%= link_to "<<Back to hotels", hotels_path %>
+
+</div>

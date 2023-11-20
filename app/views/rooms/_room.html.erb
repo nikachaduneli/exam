@@ -1,0 +1,19 @@
+<div id="<%= dom_id room %>">
+  <div id="<%= dom_id room %>">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= room.room_number %></h5>
+        <p class="card-text"><%=room.price %>$</p>
+        <% if room.hotel %>
+          <strong>Hotel:</strong>
+          <%= link_to room.hotel.name, room.hotel %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+

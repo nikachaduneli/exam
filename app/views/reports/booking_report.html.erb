@@ -1,0 +1,47 @@
+<%= form_with(ulr: booking_reports_path, method: "get", class: "d-flex") do |f|%>
+  <% if current_user.admin? %>
+    <%= f.label :hotel %>
+    <%= f.collection_select :hotel_id, Hotel.all, :id, :name, {include_blank: true}, {multiple: false} %>
+  <% end %>
+  <%= f.label :date_start %>
+  <%= f.date_field :date_start %>
+  <%= f.label :date_end %>
+  <%= f.date_field :date_end %>
+  <%= button_tag 'filter', class: 'btn btn-outline-success' %>
+<%end %>
+<div id="hotels">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">code</th>
+      <% if current_user.admin? %>
+        <th scope="col">client</th>
+      <% end %>
+      <th scope="col">hotel</th>
+      <th scope="col">room code</th>
+      <th scope="col">booking-period</th>
+      <th scope="col">price per night</th>
+      <th scope="col">price total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <th scope="row">1</th>
+        <td><%= booking.code%></td>
+        <% if current_user.admin? %>
+          <td><%= booking.user.username%></td>
+        <%end%>
+        <td><%= booking.hotel.name %></td>
+        <td><%= booking.room.room_number %></td>
+        <td><%= booking.duration %></td>
+        <td><%= booking.room.price %></td>
+        <td><%= booking.total_price %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
